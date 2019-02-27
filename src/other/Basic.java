@@ -1,5 +1,7 @@
 package other;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import static java.lang.Math.*;
 public class Basic {
     static  String name ;
@@ -31,6 +33,9 @@ public class Basic {
         }*/
         //static引入静态包
         System.out.println(random());
+        boolean i = (3*0.1==0.3);
+        System.out.println(i);
+        ConcurrentHashMap map = new ConcurrentHashMap();
 
     }
 }
