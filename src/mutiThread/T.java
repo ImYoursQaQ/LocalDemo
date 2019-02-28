@@ -1,4 +1,5 @@
 package mutiThread;
+/*同步方法和非同步方法同时运行*/
 
 public class T  {
 
