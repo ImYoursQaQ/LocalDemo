@@ -25,7 +25,7 @@ public class T2 {
 
                 System.out.println(Thread.currentThread().getName()+"start");
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                   Thread.currentThread().wait(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
