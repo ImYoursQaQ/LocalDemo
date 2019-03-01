@@ -1,4 +1,5 @@
 package mutiThread;
+/*使用阻塞队列实现线程同步*/
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
