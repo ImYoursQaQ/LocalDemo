@@ -2,12 +2,15 @@
 /*反射示例*/
 package other;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
+
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 public class Person implements Serializable {
 

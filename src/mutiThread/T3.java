@@ -2,11 +2,13 @@ package mutiThread;
 /*volatile关键字保证可见性*/
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class T3 {
     String name;
      int anInt = 0;
-    /*volatile*/ boolean flag = true;
+    volatile boolean flag = true;
     //public  int anInt = 0;
     public synchronized void m1(String name,int anInt){
             this.name = name;
@@ -35,6 +37,7 @@ public class T3 {
 
 
     public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
         T3 t = new T3();
         new Thread(t::m3,"m3").start();
         try {

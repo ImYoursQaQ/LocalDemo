@@ -1,7 +1,14 @@
 package mutiThread;
+
+import java.util.Collections;
+
+
 //wait 和 notify
 public class ProducerConsumerWithWaitNofity {
+
+
     public static void main(String[] args) {
+
         Resource resource = new Resource();
         //生产者线程
         ProducerThread p1 = new ProducerThread(resource);
@@ -9,14 +16,14 @@ public class ProducerConsumerWithWaitNofity {
         ProducerThread p3 = new ProducerThread(resource);
         //消费者线程
         ConsumerThread c1 = new ConsumerThread(resource);
-        //ConsumerThread c2 = new ConsumerThread(resource);
+        ConsumerThread c2 = new ConsumerThread(resource);
         //ConsumerThread c3 = new ConsumerThread(resource);
     
         p1.start();
         //p2.start();
         //p3.start();
         c1.start();
-        //c2.start();
+        c2.start();
         //c3.start();
     }
     
@@ -38,10 +45,21 @@ class Resource{//重要
      * 从资源池中取走资源
      */
     public synchronized void remove(){
-        if(num > 0){
+        while (num == 0){
+            try {
+                wait();
+                System.out.println(Thread.currentThread().getName()+"等待中");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        num--;
+        System.out.println(Thread.currentThread().getName()+"消费一个");
+        notifyAll();
+        /*if(num > 0){
             num--;
             System.out.println("消费者" + Thread.currentThread().getName() +
-                    "消耗一件资源，" + "当前线程池有" + num + "个");
+                    "消耗一件资源，" + "当前资源池有" + num + "个");
             notifyAll();//通知生产者生产资源
         }else{
             try {
@@ -51,7 +69,7 @@ class Resource{//重要
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
     /**
      * 向资源池中添加资源
